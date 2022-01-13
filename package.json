@@ -1,6 +1,6 @@
 {
-    "name": "express-HelloWorld",
-    "description": "Hello World Node Express web application",
+    "name": "todo_app",
+    "description": "Todo app to learn more about react and AWS",
     "version": "0.0.1",
     "private": true,
     "dependencies": {
@@ -12,7 +12,7 @@
         "supertest": "3.0.0"
     },
     "scripts": {
-        "start": "node server.js",
+        "start": "node index.js",
         "test": "mocha --recursive tests --exit"
     }
 }
