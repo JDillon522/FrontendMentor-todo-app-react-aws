@@ -18,12 +18,12 @@ phases:
     commands:
       # Client
       - cd client
-      - rm -r node_modules
+      # - rm -r node_modules
       - npm install --production && npm run build && cd ..
 
       # Remove existing node_modules to clear dev dependencies
       - cd api
-      - rm -r node_modules
+      # - rm -r node_modules
       - npm install --production
       - npm run build
 
