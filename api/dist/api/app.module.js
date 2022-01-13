@@ -19,7 +19,8 @@ AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             serve_static_1.ServeStaticModule.forRoot({
-                rootPath: (0, posix_1.join)(__dirname, 'client')
+                rootPath: (0, posix_1.join)(__dirname, '..', 'dist', 'client'),
+                exclude: ['/api*']
             })
         ],
         controllers: [

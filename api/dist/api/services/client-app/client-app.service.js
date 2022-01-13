@@ -13,7 +13,7 @@ const fs_1 = require("fs");
 let ClientAppService = class ClientAppService {
     async getApp(file) {
         const basePath = 'dist/client';
-        const filePath = (0, path_1.resolve)((0, path_1.join)(basePath, file || 'index.html'));
+        const filePath = (0, path_1.resolve)((0, path_1.join)(basePath, file ? 'static' + file : 'index.html'));
         return new Promise((resolve, reject) => {
             (0, fs_1.readFile)(filePath, 'utf8', (err, data) => {
                 if (err) {

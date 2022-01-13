@@ -5,5 +5,4 @@ export declare class AppController {
     private readonly clientService;
     constructor(appService: AppService, clientService: ClientAppService);
     getHello(): string;
-    getApp(params: any): Promise<unknown>;
 }
