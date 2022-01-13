@@ -11,7 +11,7 @@ class App extends Component {
 
   async testApi() {
     const data = await fetch('/api');
-    console.log(await data.json())
+    console.log('API', await data.json())
   }
 
   render() {
