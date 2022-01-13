@@ -21,6 +21,7 @@ phases:
 
       # Install runtime dependencies
       - npm install --production
+      - cd app && npm install --production && npm run build && cd ..
 
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template-file template-export.yml
 
