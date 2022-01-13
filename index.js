@@ -6,5 +6,9 @@ publicDir = path.join(__dirname,'app', 'build');
 
 app.use(express.static(publicDir))
 
+app.use('/api', (req, res, next) => {
+    res.json({foo: 'bar'})
+});
+
 app.listen(port);
 module.exports = app;
