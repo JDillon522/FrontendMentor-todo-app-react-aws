@@ -1,0 +1,68 @@
+:root {
+    --font-family: 'Josefin Sans', sans-serif;
+    --base-font-size: 18px;
+    --card-max-width: 540px;
+    --white-font: #FFFFFF;
+    --dark-font: #494C6B;
+
+    /* light theme */
+    --background-color-lt: #FAFAFA;
+    --card-background-color-lt: #FFFFFF;
+    --font-color-lt: #494C6B;
+
+    /* dark theme */
+    --background-color-dk: #171823;
+
+    --current-background-color: var(--background-color-lt);
+    --current-card-background-color: var(--card-background-color-lt);
+}
+
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: var(--font-family);
+    color: var(--dark-font);
+    background-color: var(--current-background-color);
+    font-size: var(--base-font-size);
+}
+
+p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1rem;
+    letter-spacing: -0.25px;
+}
+
+h1 {
+    color: var(--white-font);
+}
+
+#root {
+    width: 100%;
+    max-width: var(--card-max-width);
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.banner {
+    width: 100%;
+    height: 300px;
+    background: url(images/bg-desktop-light.jpg),
+                linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: normal;
+}

@@ -1,0 +1,11 @@
+.App {
+
+}
+
+main {
+    width: 100%;
+    max-width: var(--card-max-width);
+    background-color: var(--current-card-background-color);
+    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+    border-radius: 5px;
+}
