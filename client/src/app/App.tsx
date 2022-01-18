@@ -1,18 +1,15 @@
 import { Component } from 'react';
 import './App.css';
 import Header from '../header/Header';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilState } from 'recoil';
+import { todoState } from '../state/atoms';
 
 class App extends Component {
-  constructor(props: any) {
-    super(props);
-    this.state = { data: null }
-    this.testApi()
-  }
+  todo = useRecoilState(todoState)[0];
+  setTodo = useRecoilState(todoState)[1];
 
-  async testApi() {
-    // const data = await fetch('/api');
-    // console.log('API', await data.json())
+  componentDidMount() {
+
   }
 
   render() {

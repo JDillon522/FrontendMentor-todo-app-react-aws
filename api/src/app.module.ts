@@ -4,6 +4,8 @@ import { resolve } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientAppService } from './services/client-app/client-app.service';
+import { ApiController } from './api/api.controller';
+import { DatabaseService } from './database/database.service';
 
 @Module({
   imports: [
@@ -13,11 +15,13 @@ import { ClientAppService } from './services/client-app/client-app.service';
     })
   ],
   controllers: [
-    AppController
+    AppController,
+    ApiController
   ],
   providers: [
     AppService,
-    ClientAppService
+    ClientAppService,
+    DatabaseService
   ],
 })
 export class AppModule {}
