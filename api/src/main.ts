@@ -1,6 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { config } from 'dotenv';
+
 const port = process.env.PORT || 3000;
+
+if (process.env.USERNAME === 'root') {
+  console.log('LOADING PROD ENV - MAIN');
+
+  config({ path: '/opt/elasticbeanstalk/deployment/env'});
+}
 
 async function bootstrap() {
   console.log(

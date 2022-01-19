@@ -10,6 +10,7 @@ import { ConfigModule, ConfigModuleOptions } from '@nestjs/config';
 
 const configOpts: ConfigModuleOptions = {}
 if (process.env.USERNAME === 'root') {
+  console.log('LOADING PROD ENV - MODULE')
   configOpts.envFilePath = '/opt/elasticbeanstalk/deployment/env';
 }
 
