@@ -1,5 +1,6 @@
 # compiled output
 /api/dist
+/client/build
 **/node_modules
 **/.env
 # Logs

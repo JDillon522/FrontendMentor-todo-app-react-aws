@@ -16,11 +16,16 @@ phases:
       # - npm test
   post_build:
     commands:
+      - rm -rf api/dist
+      - mkdir ../api/dist ../api/dist/client
+      - rm -rf api/node_modules client/node_modules
+
       # Client
       - cd client
       # - rm -r node_modules
       - npm install
       - npm run build
+      - mv build/* ../api/dist/client
       - cd ..
 
       # Remove existing node_modules to clear dev dependencies
