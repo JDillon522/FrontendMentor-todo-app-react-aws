@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  parameter-store:
+    client_build_path: 'BUILD_PATH'
+
 phases:
   install:
     runtime-versions:
@@ -19,7 +23,8 @@ phases:
       # Client
       - cd client
       # - rm -r node_modules
-      - npm install --production && npm run build && cd ..
+      - npm install --production
+      - BUILD_PATH=${client_build_path} npm run build && cd ..
 
       # Remove existing node_modules to clear dev dependencies
       - cd api
