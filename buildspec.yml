@@ -17,7 +17,7 @@ phases:
   post_build:
     commands:
       - rm -rf api/dist
-      - mkdir ../api/dist ../api/dist/client
+      - mkdir api/dist api/dist/client
       - rm -rf api/node_modules client/node_modules
 
       # Client
