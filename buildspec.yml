@@ -20,7 +20,7 @@ phases:
       - cd client
       # - rm -r node_modules
       - npm install --production
-      - BUILD_PATH=../api/dist/client npm run build && cd ..
+      - npm run build && cd ..
 
       # Remove existing node_modules to clear dev dependencies
       - cd api
