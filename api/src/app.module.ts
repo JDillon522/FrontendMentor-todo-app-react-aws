@@ -6,11 +6,15 @@ import { ApiController } from './api/api.controller';
 import { DatabaseService } from './database/database.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Item } from './database/entities/item.entity';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigModuleOptions } from '@nestjs/config';
 
+const configOpts: ConfigModuleOptions = {}
+if (process.env.USERNAME === 'root') {
+  configOpts.envFilePath = '/opt/elasticbeanstalk/deployment/env';
+}
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot(configOpts),
     ServeStaticModule.forRoot({
       rootPath: resolve(__dirname, '..', '..', 'dist', 'client'),
       exclude: ['/api*']
