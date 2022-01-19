@@ -1,28 +1,20 @@
-import { Component } from 'react';
 import './App.css';
 import Header from '../header/Header';
-import { RecoilRoot, useRecoilState } from 'recoil';
-import { todoState } from '../state/atoms';
+import { RecoilRoot } from 'recoil';
+import TodoCard from '../todo-card/TodoCard';
+import Yeet from '../yeet/Yeet';
 
-class App extends Component {
-  todo = useRecoilState(todoState)[0];
-  setTodo = useRecoilState(todoState)[1];
+function App() {
 
-  componentDidMount() {
-
-  }
-
-  render() {
-    return (
-      <RecoilRoot>
-        <main className='App'>
-          <Header />
-
-        </main>
-      </RecoilRoot>
-    );
-
-  }
+  return (
+    <RecoilRoot>
+      <Yeet />
+      <main className='App'>
+        <Header />
+        <TodoCard />
+      </main>
+    </RecoilRoot>
+  );
 }
 
 export default App;
