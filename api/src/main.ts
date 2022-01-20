@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 const appOptions: NestApplicationOptions = {};
 
 console.log('=============== BEFORE MAIN =============', process.env);
-if (process.env.PWD === '/var/app/current/api/dist/api') {
+if (process.env.NODE_ENV === 'production') {
   console.log('==== ROOT USER ====');
 
   config()
