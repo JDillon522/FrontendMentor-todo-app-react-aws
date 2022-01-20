@@ -8,15 +8,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Item } from './database/entities/item.entity';
 import { ConfigModule, ConfigModuleOptions } from '@nestjs/config';
 
-const configOpts: ConfigModuleOptions = {}
-if (process.env.USERNAME === 'root') {
-  console.log('LOADING PROD ENV - MODULE')
-  configOpts.envFilePath = '/opt/elasticbeanstalk/deployment/env';
-}
-
 @Module({
   imports: [
-    ConfigModule.forRoot(configOpts),
+    ConfigModule.forRoot(),
     ServeStaticModule.forRoot({
       rootPath: resolve(__dirname, '..', '..', 'dist', 'client'),
       exclude: ['/api*']
