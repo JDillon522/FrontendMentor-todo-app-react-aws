@@ -6,7 +6,7 @@
     "private": true,
     "license": "UNLICENSED",
     "scripts": {
-        "start": "cd api/dist/api && node main.js"
+        "start": "cd api/dist/api && cp /opt/elasticbeanstalk/deployment/env .env && node main.js"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.2",
