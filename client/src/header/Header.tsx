@@ -4,13 +4,13 @@ import './Header.css';
 
 export default function Header() {
 
-    return (
-        <header>
-            <div className="row">
-                <h1>TODO</h1>
-                <ThemeToggle />
-            </div>
-            <NewTodoInput />
-        </header>
-    )
+  return (
+    <header>
+      <div className="row">
+        <h1>TODO</h1>
+        <ThemeToggle />
+      </div>
+      <NewTodoInput />
+    </header>
+  )
 }

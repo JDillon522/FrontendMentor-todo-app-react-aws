@@ -1,0 +1,45 @@
+main.TodoCard {
+  max-width: var(--card-max-width);
+  width: 100%;
+  background-color: var(--current-card-background-color);
+  box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.TodoCard .TodoItem:first-of-type {
+  border-radius: 5px 5px 0 0;
+}
+.TodoCard .footer {
+  height: 50px;
+  border-top: 1px solid var(--current-subdued);
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.TodoCard label {
+  color: var(--subdued-font);
+}
+
+.TodoCard button {
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 700;
+  letter-spacing: -0.19px;
+  padding: .25rem;
+  color: var(--subdued-font);
+  transition: color .25s;
+}
+
+.TodoCard button.active {
+  color: var(--active-blue);
+}
+
+.TodoCard button:hover:not(.active) {
+  color: var(--dark-font);
+}

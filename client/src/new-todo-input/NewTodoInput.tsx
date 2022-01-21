@@ -1,14 +1,42 @@
-import { Component, ReactNode } from "react";
+import { FormEvent, useState } from "react";
+import { useRecoilState } from "recoil";
+import { IItem, todoState } from "../state/atoms";
+import { createAndGetAll } from "../state/todoService";
+import { ItemStatus } from "../yeet/Yeet";
 import './NewTodoInput.css';
+const stateOpts = ItemStatus;
 
-export default class NewTodoInput extends Component {
+export default function NewTodoInput() {
+  const [state, setItems] = useRecoilState(todoState);
+  const { value, bind, reset } = useInput('');
 
-    render(): ReactNode {
-        return (
-            <div className="new-todo">
-                <div className="check"></div>
-                <input placeholder="Create a new todo..." ></input>
-            </div>
-        )
-    }
+  const submitCreate = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const newItem: IItem = { title: value, description: '', state: stateOpts.pending };
+    createAndGetAll(newItem, state, setItems);
+    reset();
+  }
+
+  return (
+    <form className="new-todo" onSubmit={(e: FormEvent<HTMLFormElement>) => submitCreate(e)}>
+      <input placeholder="Create a new todo..." {...bind}></input>
+    </form>
+  )
+
 }
+
+export const useInput = (initialValue: string) => {
+  const [value, setValue] = useState(initialValue);
+
+  return {
+    value,
+    setValue,
+    reset: () => setValue(''),
+    bind: {
+      value,
+      onChange: (event: any) => {
+        setValue(event.target.value);
+      }
+    }
+  };
+};

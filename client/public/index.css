@@ -4,17 +4,23 @@
     --card-max-width: 540px;
     --white-font: #FFFFFF;
     --dark-font: #494C6B;
+    --subdued-font: #9495A5;
+    --active-blue: #3A7CFD;
 
     /* light theme */
     --background-color-lt: #FAFAFA;
     --card-background-color-lt: #FFFFFF;
     --font-color-lt: #494C6B;
+    --subdued-gray: #E3E4F1;
+    --disabled-text: #D1D2DA;
 
     /* dark theme */
     --background-color-dk: #171823;
 
     --current-background-color: var(--background-color-lt);
     --current-card-background-color: var(--card-background-color-lt);
+    --current-subdued: var(--subdued-gray);
+    --current-disabled-text: var(--disabled-text);
 }
 
 
@@ -50,6 +56,7 @@ h1 {
     max-width: var(--card-max-width);
     display: flex;
     flex-direction: column;
+    margin-top: -250px;
 }
 
 .row {

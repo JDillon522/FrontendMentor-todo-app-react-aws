@@ -1,7 +1,14 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { todoState, IItem } from "../state/atoms";
-import { todoService } from "../state/todoService";
+import { todoState } from "../state/atoms";
+import { getAllAndUpdate } from "../state/todoService";
+
+export enum ItemStatus {
+    all = 0,
+    draft = 1,
+    pending = 2,
+    complete = 3,
+}
 
 /**
  * Seeing as I'm still trying to figure out the best "reacty" way to do things
@@ -14,13 +21,11 @@ import { todoService } from "../state/todoService";
  * api requests to get and set state.
  */
 export default function Yeet() {
-    const setItems = useRecoilState(todoState)[1];
+    const [state, setItems] = useRecoilState(todoState);
 
     useEffect(() => {
-        todoService.getTasks().then((items: IItem[]) => {
-            setItems(items);
-        });
-    }, [setItems]);
+        getAllAndUpdate(state, setItems);
+    }, []);
 
     return (<></>);
 }

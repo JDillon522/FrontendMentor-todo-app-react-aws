@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Debug Nest Framework",
             "args": [
-                "${workspaceRoot}/src/main.ts"
+                "${workspaceFolder}/src/main.ts"
             ],
             "runtimeArgs": [
                 "--nolazy",
@@ -21,8 +21,8 @@
             "internalConsoleOptions": "openOnSessionStart",
             "outputCapture": "std",
             "envFile": ".env",
-            "cwd": "${workspaceRoot}",
-            "console": "internalConsole",
+            "cwd": "${workspaceFolder}",
+            // "console": "internalConsole",
             "protocol": ""
         }
     ]

@@ -3,10 +3,10 @@ header {
     max-width: var(--card-max-width);
     display: flex;
     flex-direction: column;
-    margin-top: -250px;
 }
 
 header .row {
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1.5rem;
 }

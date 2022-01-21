@@ -1,6 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
-import { DatabaseService } from 'src/database/database.service';
-import { Item } from 'src/database/entities/item.entity';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { DatabaseService } from '../services/database.service';
+import { Item } from '../database/entities/item.entity';
 
 @Controller('api')
 export class ApiController {
@@ -11,6 +11,25 @@ export class ApiController {
     public async getItems(): Promise<Item[]> {
         const items = await this.db.findAll();
 
+        return items;
+    }
+
+    @Put('items')
+    public async updateItem(@Body() body: Item): Promise<Item[]> {
+        const item = await this.db.update(body);
+
+        return item;
+    }
+
+    @Post('items')
+    public async createNewItem(@Body() body: Item): Promise<Item[]> {
+        const items = await this.db.create(body);
+        return items;
+    }
+
+    @Delete('items/:id')
+    public async deleteItem(@Param('id') id: number): Promise<Item[]> {
+        const items = await this.db.delete(id);
         return items;
     }
 }

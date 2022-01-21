@@ -7,6 +7,8 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
+    margin-bottom: 1.5rem;
+    position: relative;
 }
 
 .new-todo input {
@@ -18,10 +20,19 @@
     line-height: 1rem;
     letter-spacing: -0.25px;
     flex-grow: 1;
+    padding-left: 3rem;
 }
 
-.new-todo .check {
-    height: 64px;
-    width: 64px;
-    background-color: var(--current-card-background-color);
+.new-todo:before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 23px;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid var(--current-subdued);
+    background: var(--white-font);
+    border-radius: 25px;
+    box-sizing: border-box;
+
 }

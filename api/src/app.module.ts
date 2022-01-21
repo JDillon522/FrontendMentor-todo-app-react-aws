@@ -3,10 +3,10 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { resolve } from 'path';
 import { AppController } from './app.controller';
 import { ApiController } from './api/api.controller';
-import { DatabaseService } from './database/database.service';
+import { DatabaseService } from './services/database.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Item } from './database/entities/item.entity';
-import { ConfigModule, ConfigModuleOptions } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -26,7 +26,7 @@ import { ConfigModule, ConfigModuleOptions } from '@nestjs/config';
         Item
       ],
       logging: true,
-      synchronize: false
+      synchronize: process.env.NODE_ENV === 'production' ? false : true
     }),
     TypeOrmModule.forFeature([Item])
   ],

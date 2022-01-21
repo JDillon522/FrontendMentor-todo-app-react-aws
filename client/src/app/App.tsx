@@ -9,10 +9,10 @@ function App() {
   return (
     <RecoilRoot>
       <Yeet />
-      <main className='App'>
+      <div className='App'>
         <Header />
         <TodoCard />
-      </main>
+      </div>
     </RecoilRoot>
   );
 }
