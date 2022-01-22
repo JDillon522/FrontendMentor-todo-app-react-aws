@@ -1,10 +1,17 @@
 import { cloneDeep } from 'lodash';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useRef } from 'react';
+import { DropTargetMonitor, useDrag, useDrop, XYCoord } from 'react-dnd';
 import { useRecoilState } from 'recoil';
 import { IItem, todoState, updateFilteredItems } from '../state/atoms';
 import { deleteAndGetAll, updateAndGetAll } from '../state/todoService';
 import { ItemStatus } from '../yeet/Yeet';
 import './TodoItem.css';
+
+interface DragItem {
+  index: number;
+  id: number;
+  type: string;
+}
 
 export default function TodoItem(props: { item: IItem }) {
   const [state, setItems] = useRecoilState(todoState);

@@ -1,12 +1,17 @@
 import { PropsWithChildren } from 'react';
 import { useRecoilState } from 'recoil';
 import { IItem, todoState, updateFilteredItems } from '../state/atoms';
+import { deleteAllCompleted } from '../state/todoService';
 import TodoItem from '../todo-item/TodoItem';
 import { ItemStatus } from '../yeet/Yeet';
 import './TodoCard.css';
 
 export default function TodoCard() {
-  const [state] = useRecoilState(todoState);
+  const [state, setItems] = useRecoilState(todoState);
+
+  const clearCompleted = () => {
+    deleteAllCompleted(state, setItems);
+  }
 
   return (
     <main className='TodoCard'>
@@ -26,7 +31,7 @@ export default function TodoCard() {
           <FilterButton buttonStatus={ItemStatus.complete}>Completed</FilterButton>
         </div>
 
-        <button>Clear Completed</button>
+        <button onClick={clearCompleted}>Clear Completed</button>
       </div>
     </main>
   )

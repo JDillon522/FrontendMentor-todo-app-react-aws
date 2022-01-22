@@ -14,4 +14,9 @@ export class Item {
 
     @Column()
     state: number;
+
+    @Column({
+        nullable: true
+    })
+    positionIndex: number;
 }

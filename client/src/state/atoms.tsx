@@ -7,12 +7,14 @@ export interface IItem {
   title: string;
   description: string;
   state: number;
+  positionIndex: number;
 }
 
 export interface ITodoState {
   items: IItem[];
   filteredItems: IItem[];
   activeFilter: ItemStatus;
+  theme: 'light'|'dark'
 }
 
 export const todoState = atom({
@@ -20,7 +22,8 @@ export const todoState = atom({
   default: {
     items: [],
     filteredItems: [],
-    activeFilter: 0
+    activeFilter: 0,
+    theme: 'light'
   } as ITodoState
 });
 

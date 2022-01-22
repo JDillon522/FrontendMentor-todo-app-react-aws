@@ -12,7 +12,7 @@ export default function NewTodoInput() {
 
   const submitCreate = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newItem: IItem = { title: value, description: '', state: stateOpts.pending };
+    const newItem: IItem = { title: value, description: '', state: stateOpts.pending, positionIndex: 1 };
     createAndGetAll(newItem, state, setItems);
     reset();
   }

@@ -35,7 +35,7 @@
   width: 1rem;
   height: 1rem;
   border: 1px solid var(--current-subdued);
-  background: var(--white-font);
+  background: var(--current-card-background-color);
   border-radius: 25px;
   box-sizing: border-box;
 }
@@ -84,7 +84,7 @@
 [type="checkbox"]:not(:checked)+label:hover:after,
 [type="checkbox"]:not(:checked):focus+label:after {
   content: '';
-  background: var(--white-font);
+  background: var(--current-card-background-color);
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 25px;

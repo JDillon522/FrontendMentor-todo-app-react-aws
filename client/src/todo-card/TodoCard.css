@@ -2,7 +2,7 @@ main.TodoCard {
   max-width: var(--card-max-width);
   width: 100%;
   background-color: var(--current-card-background-color);
-  box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+  box-shadow: var(--current-box-shadow);
   box-sizing: border-box;
   border-radius: 5px;
 }

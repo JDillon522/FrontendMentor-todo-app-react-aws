@@ -29,7 +29,14 @@ export class ApiController {
 
     @Delete('items/:id')
     public async deleteItem(@Param('id') id: number): Promise<Item[]> {
-        const items = await this.db.delete(id);
+        const items = await this.db.deleteOne(id);
+        return items;
+    }
+
+    @Delete('items')
+    public async deleteCompletedItems(@Body() ids: number[]): Promise<Item[]> {
+        const items = await this.db.deleteMany(ids);
+
         return items;
     }
 }

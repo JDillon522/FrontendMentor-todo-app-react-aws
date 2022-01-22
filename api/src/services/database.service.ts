@@ -28,8 +28,14 @@ export class DatabaseService {
         return this.findAll();
     }
 
-    public async delete(id: number): Promise<Item[]> {
+    public async deleteOne(id: number): Promise<Item[]> {
         await this.itemRepo.delete({ id: id });
+
+        return this.findAll();
+    }
+
+    public async deleteMany(ids: number[]): Promise<Item[]> {
+        await this.itemRepo.delete(ids);
 
         return this.findAll();
     }
