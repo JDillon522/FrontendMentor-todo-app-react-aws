@@ -2,10 +2,17 @@ AWSTemplateFormatVersion: 2010-09-09
 Transform:
 - AWS::CodeStar
 
+Description: "Todo App deployment template"
+
 Conditions:
   UseSubnet: !Not [!Equals [!Ref 'SubnetId', subnet-none]]
 
 Parameters:
+  # UniqueParameterName
+    # Type: string?
+    # Default: default val
+    # AllowedValues: ["opt1",...]
+    # Description: duh
   ProjectId:
     Type: String
     Description: AWS CodeStar project ID used to name project resources and create roles.
@@ -34,13 +41,23 @@ Parameters:
     Type: String
     Description: The name for a project pipeline stage, such as Staging or Prod, for which resources are provisioned and deployed.
     Default: ''
+
+
 Resources:
+  # UniqueResourceLogicalName:
+    # Type: aws type name
+    # Description: duh
+    # Properties: # properties passed to the resource
+      # InstanceType: !Ref 'ParameterName'
+
+
   EBApplication:
     Description: The AWS Elastic Beanstalk application, which is a container used to deploy the correct application configuration.
     Type: AWS::ElasticBeanstalk::Application
     Properties:
       ApplicationName: !Sub '${ProjectId}app${Stage}'
       Description: The name of the AWS Elastic Beanstalk application to be created for this project.
+
   EBApplicationVersion:
     Description: The version of the AWS Elastic Beanstalk application to be created for this project.
     Type: AWS::ElasticBeanstalk::ApplicationVersion
@@ -48,6 +65,7 @@ Resources:
       ApplicationName: !Ref 'EBApplication'
       Description: The application version number.
       SourceBundle: '.'
+
   EBConfigurationTemplate:
     Description: The AWS Elastic Beanstalk configuration template to be created for this project, which defines configuration settings used to deploy different versions of an application.
     Type: AWS::ElasticBeanstalk::ConfigurationTemplate
@@ -65,6 +83,7 @@ Resources:
         OptionName: SystemType
         Value: enhanced
       SolutionStackName: !Ref 'SolutionStackName'
+
   EBEnvironment:
     Description: The AWS Elastic Beanstalk deployment group where the application is deployed, which is made up of the Amazon EC2 Linux instances launched for this project.
     Type: AWS::ElasticBeanstalk::Environment
@@ -93,3 +112,18 @@ Resources:
           OptionName: Subnets
           Value: !Ref 'SubnetId'
         - !Ref "AWS::NoValue"
+# CloudFormation Functions
+# Fn::Base64
+# Fn::FindInMap
+# FN::GetAtt / get attribute from a created resource. JSON Syntax: {"Fn:GetAtt": ["LogicalResourceName", "AttributeName"]}
+# Fn::getAZs / get availability zones
+# Fn::ImportValue / Import an export from another stack
+# Fn::Join / {"Fn::Join": ["Delimiter", ["val1", "val2"]]}
+# Fn::Select
+# Fn::Split
+# Fn::Sub / Replace a token in a string. Substitute. {"Fn::Sub": ["String${Token}", {"Token": "Value"}]}
+# Fn::And
+# Fn::Equals
+# Fn::If
+# Fn::Not
+# Fn::Or
