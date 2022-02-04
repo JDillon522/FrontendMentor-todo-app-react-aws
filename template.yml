@@ -8,11 +8,6 @@ Conditions:
   UseSubnet: !Not [!Equals [!Ref 'SubnetId', subnet-none]]
 
 Parameters:
-  # UniqueParameterName
-    # Type: string?
-    # Default: default val
-    # AllowedValues: ["opt1",...]
-    # Description: duh
   ProjectId:
     Type: String
     Description: AWS CodeStar project ID used to name project resources and create roles.
@@ -44,13 +39,6 @@ Parameters:
 
 
 Resources:
-  # UniqueResourceLogicalName:
-    # Type: aws type name
-    # Description: duh
-    # Properties: # properties passed to the resource
-      # InstanceType: !Ref 'ParameterName'
-
-
   EBApplication:
     Description: The AWS Elastic Beanstalk application, which is a container used to deploy the correct application configuration.
     Type: AWS::ElasticBeanstalk::Application
@@ -112,18 +100,4 @@ Resources:
           OptionName: Subnets
           Value: !Ref 'SubnetId'
         - !Ref "AWS::NoValue"
-# CloudFormation Functions
-# Fn::Base64
-# Fn::FindInMap
-# FN::GetAtt / get attribute from a created resource. JSON Syntax: {"Fn:GetAtt": ["LogicalResourceName", "AttributeName"]}
-# Fn::getAZs / get availability zones
-# Fn::ImportValue / Import an export from another stack
-# Fn::Join / {"Fn::Join": ["Delimiter", ["val1", "val2"]]}
-# Fn::Select
-# Fn::Split
-# Fn::Sub / Replace a token in a string. Substitute. {"Fn::Sub": ["String${Token}", {"Token": "Value"}]}
-# Fn::And
-# Fn::Equals
-# Fn::If
-# Fn::Not
-# Fn::Or
+
