@@ -1,6 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { DatabaseService } from '../services/database.service';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, Request } from '@nestjs/common';
+import { DatabaseService } from '../services/database/database.service';
+
 import { Item } from '../database/entities/item.entity';
+import { JwtAuthGuard } from '../services/auth/auth.service';
 
 @Controller('api')
 export class ApiController {
@@ -28,8 +30,10 @@ export class ApiController {
     }
 
     @Delete('items/:id')
-    public async deleteItem(@Param('id') id: number): Promise<Item[]> {
+    @UseGuards(JwtAuthGuard)
+    public async deleteItem(@Param('id') id: number, @Request() req): Promise<Item[]> {
         const items = await this.db.deleteOne(id);
+        console.log('USER==========', req.user)
         return items;
     }
 
