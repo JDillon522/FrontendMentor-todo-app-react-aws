@@ -33,7 +33,6 @@ export class ApiController {
     @UseGuards(JwtAuthGuard)
     public async deleteItem(@Param('id') id: number, @Request() req): Promise<Item[]> {
         const items = await this.db.deleteOne(id);
-        console.log('USER==========', req.user)
         return items;
     }
 

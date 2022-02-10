@@ -7,12 +7,14 @@ import { DatabaseService } from './services/database/database.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Item } from './database/entities/item.entity';
 import { ConfigModule } from '@nestjs/config';
-import { AuthService, jwtConstants } from './services/auth/auth.service';
+import { AuthService } from './services/auth/auth.service';
 import { HttpModule } from '@nestjs/axios';
 import { AuthController } from './auth/auth.controller';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from './auth/jwt.strategy';
+import { jwkPem, JwtStrategy } from './auth/jwt.strategy';
+import { UserService } from './services/user/user.service';
+import { UserController } from './user/user.controller';
 
 @Module({
   imports: [
@@ -38,19 +40,21 @@ import { JwtStrategy } from './auth/jwt.strategy';
     TypeOrmModule.forFeature([Item]),
     PassportModule,
     JwtModule.register({
-      secret: jwtConstants.secret,
+      secret: jwkPem(),
       signOptions: { expiresIn: '60s' }
     })
   ],
   controllers: [
     AppController,
     ApiController,
-    AuthController
+    AuthController,
+    UserController
   ],
   providers: [
     DatabaseService,
     AuthService,
-    JwtStrategy
+    JwtStrategy,
+    UserService
   ],
 })
 export class AppModule {}
