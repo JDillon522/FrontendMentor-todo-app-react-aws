@@ -3,7 +3,7 @@ import { AuthConfirmDto, AuthService, JwtAuthGuard } from '../services/auth/auth
 import { AuthDto } from '../services/auth/auth.service';
 
 
-@Controller('auth')
+@Controller('api/auth')
 export class AuthController {
 
   constructor(

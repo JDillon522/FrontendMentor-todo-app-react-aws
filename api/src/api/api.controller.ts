@@ -17,15 +17,15 @@ export class ApiController {
     }
 
     @Put('items')
-    public async updateItem(@Body() body: Item): Promise<Item[]> {
-        const item = await this.db.update(body);
+    public async updateItem(@Body() body: { item: Item }): Promise<Item[]> {
+        const item = await this.db.update(body.item);
 
         return item;
     }
 
     @Post('items')
-    public async createNewItem(@Body() body: Item): Promise<Item[]> {
-        const items = await this.db.create(body);
+    public async createNewItem(@Body() body: { item: Item}): Promise<Item[]> {
+        const items = await this.db.create(body.item);
         return items;
     }
 
