@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import App from './pages/app/App';
+import Auth from './pages/auth/Auth';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import reportWebVitals from './reportWebVitals';
@@ -16,10 +17,15 @@ ReactDOM.render(
 
         <Routes>
           <Route path="/" element={<App />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-          </Route>
+            <Route path="" element={<Home />} />
 
+            <Route path="auth" element={<Auth />}>
+              <Route path="login" element={<Login />} />
+
+
+            </Route>
+
+          </Route>
         </Routes>
       </BrowserRouter>
     </RecoilRoot>

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { todoState } from "../state/atoms";
-import { getAllAndUpdate } from "../state/todoService";
+import { getAllAndUpdate } from "../state/todo.service";
 
 export enum ItemStatus {
     all = 0,

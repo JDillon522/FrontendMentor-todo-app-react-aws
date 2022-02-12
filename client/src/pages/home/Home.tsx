@@ -1,5 +1,5 @@
-import Header from '../app/components/header/Header';
-import TodoCard from '../app/components/todo-card/TodoCard';
+import Header from './components/header/Header';
+import TodoCard from './components/todo-card/TodoCard';
 import './Home.css';
 
 export default function Home() {
