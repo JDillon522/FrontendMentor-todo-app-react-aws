@@ -1,12 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
-import App from './app/App';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import App from './pages/app/App';
+import Home from './pages/home/Home';
+import Login from './pages/login/Login';
 import reportWebVitals from './reportWebVitals';
+import Yeet from './yeet/Yeet';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RecoilRoot>
+      <Yeet />
+      <BrowserRouter>
+
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+          </Route>
+
+        </Routes>
+      </BrowserRouter>
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 );

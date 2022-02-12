@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react";
 import { useRecoilState } from "recoil";
-import { IItem, todoState } from "../state/atoms";
-import { createAndGetAll } from "../state/todoService";
-import { ItemStatus } from "../yeet/Yeet";
+import { IItem, todoState } from "../../../../state/atoms";
+import { createAndGetAll } from "../../../../state/todoService";
+import { ItemStatus } from "../../../../yeet/Yeet";
 import './NewTodoInput.css';
 const stateOpts = ItemStatus;
 

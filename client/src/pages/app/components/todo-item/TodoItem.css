@@ -43,7 +43,7 @@
 /* New checkbox checked overlay stile */
 [type="checkbox"]:not(:checked)+label:after,
 [type="checkbox"]:checked+label:after {
-  content: url('../../public/images/icon-check.svg');
+  content: url('../../../../../public/images/icon-check.svg');
   text-align: center;
   position: absolute;
   background: linear-gradient(135deg, #55DDFF 0%, #C058F3 100%);

@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import * as jwkToPem from 'jwk-to-pem';
-import { JWK, RSA } from 'jwk-to-pem';
+import { RSA } from 'jwk-to-pem';
 
 
 export const cognitoJwk = {
@@ -27,7 +27,7 @@ export const cognitoJwk = {
     }
   ]
 }
-5
+
 export const jwkPem = () => {
   const pem = jwkToPem(cognitoJwk.keys[0] as RSA);
   return pem;

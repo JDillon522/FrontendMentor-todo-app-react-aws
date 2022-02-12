@@ -1,5 +1,5 @@
 import NewTodoInput from "../new-todo-input/NewTodoInput";
-import ThemeToggle from "../theme-toggle/ThemeToggle";
+import ThemeToggle from "../../../../shared/theme-toggle/ThemeToggle";
 import './Header.css';
 
 export default function Header() {

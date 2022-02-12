@@ -14,6 +14,16 @@ import {
 
 } from '@aws-sdk/client-cognito-identity-provider';
 import { createHmac } from 'crypto';
+import { isString } from 'util';
+import { IsDefined, IsString } from 'class-validator';
+import { Expose } from 'class-transformer';
+
+export class AuthenticatedDto {
+  @IsString()
+  @IsDefined()
+  @Expose({ name: 'Access-Token' })
+  'access-token': string;
+}
 
 export interface AuthDto {
   email: string;
@@ -53,7 +63,7 @@ export class AuthService {
     const command = new SignUpCommand(params);
     const response = await this.client.send(command);
 
-    console.log(response);
+    return response;
   }
 
   async confirmAccount(user: AuthConfirmDto) {
@@ -66,7 +76,7 @@ export class AuthService {
     const command = new ConfirmSignUpCommand(params);
     const response = await this.client.send(command);
 
-    console.log(response)
+    return response;
   }
 
   async login(user: AuthDto) {
@@ -87,7 +97,6 @@ export class AuthService {
       const response = await this.client.send(command);
 
       return {
-        response: response,
         access_token: response.AuthenticationResult.AccessToken,
         id_token: response.AuthenticationResult.IdToken,
         user: this.jwt.decode(response.AuthenticationResult.IdToken)
@@ -98,6 +107,7 @@ export class AuthService {
     }
   }
 
+  // TODO: We need to implement a redis cache Black List and store the IdToken for two hours.
   async logout(accessToken: string) {
     const params: RevokeTokenCommandInput = {
       ClientId: process.env.COGNITO_CLIENT_ID,

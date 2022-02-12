@@ -1,9 +1,9 @@
 import { PropsWithChildren } from 'react';
 import { useRecoilState } from 'recoil';
-import { IItem, todoState, updateFilteredItems } from '../state/atoms';
-import { deleteAllCompleted } from '../state/todoService';
+import { IItem, todoState, updateFilteredItems } from '../../../../state/atoms';
+import { deleteAllCompleted } from '../../../../state/todoService';
 import TodoItem from '../todo-item/TodoItem';
-import { ItemStatus } from '../yeet/Yeet';
+import { ItemStatus } from '../../../../yeet/Yeet';
 import './TodoCard.css';
 
 export default function TodoCard() {

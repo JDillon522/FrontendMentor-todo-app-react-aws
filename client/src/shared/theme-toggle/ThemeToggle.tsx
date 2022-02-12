@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { todoState } from '../state/atoms';
+import { todoState } from '../../state/atoms';
 import './ThemeToggle.css';
 
 
