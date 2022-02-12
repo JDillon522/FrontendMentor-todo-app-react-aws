@@ -1,0 +1,50 @@
+.LoginForm {
+  padding: 2rem 2rem .5rem;
+}
+
+.TodoCard form {
+  box-sizing: border-box;
+  max-width: var(--card-max-width);
+}
+
+.TodoCard form .footer {
+  border: none;
+  justify-content: flex-end;
+}
+
+.TodoCard form .footer button {
+  font-size: 1.15rem;
+}
+
+.TodoCard form .footer button[disabled] {
+  color: var(--current-subdued);
+}
+
+.TodoCard form .footer button:hover:not([disabled]) {
+  color: var(--active-blue);
+}
+
+.TodoCard form input {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--current-subdued);
+  padding-left: 0;
+  height: 50px;
+  transition: all .25s;
+  margin-bottom: 0;
+}
+
+input.error::placeholder,
+input.error {
+  color: var(--current-warn-font-color);
+}
+
+.TodoCard form input.error {
+  border-bottom: 1px solid var(--current-warn-font-color);
+}
+
+.errors {
+  margin: .5rem 0;
+  height: 15px;
+  font-size: .75rem;
+  color: var(--current-warn-font-color);
+}

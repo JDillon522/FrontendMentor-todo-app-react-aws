@@ -1,0 +1,16 @@
+nav {
+  display: flex;
+  align-items: center;
+  margin: .5rem;
+}
+
+
+nav a.btn {
+  color: var(--white-font);
+  margin: 0 .5rem;
+}
+
+a.btn:hover:not(.active),
+a.btn.active {
+  color: var(--black-font);
+}

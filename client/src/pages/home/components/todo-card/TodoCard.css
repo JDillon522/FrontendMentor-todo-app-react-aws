@@ -26,20 +26,4 @@ main.TodoCard {
   color: var(--subdued-font);
 }
 
-.TodoCard button {
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 700;
-  letter-spacing: -0.19px;
-  padding: .25rem;
-  color: var(--subdued-font);
-  transition: color .25s;
-}
 
-.TodoCard button.active {
-  color: var(--active-blue);
-}
-
-.TodoCard button:hover:not(.active) {
-  color: var(--dark-font);
-}

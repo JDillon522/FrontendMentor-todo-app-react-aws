@@ -11,20 +11,6 @@
     position: relative;
 }
 
-.new-todo input {
-    height: 64px;
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    line-height: 1rem;
-    letter-spacing: -0.25px;
-    flex-grow: 1;
-    padding-left: 3rem;
-    background-color: var(--current-card-background-color);
-    color: var(--current-primary-font-color);
-}
-
 .new-todo:before {
     content: '';
     position: absolute;

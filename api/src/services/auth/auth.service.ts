@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { JwtService } from '@nestjs/jwt';
 import {
@@ -98,12 +98,13 @@ export class AuthService {
 
       return {
         access_token: response.AuthenticationResult.AccessToken,
+        refresh_token: response.AuthenticationResult.RefreshToken,
         id_token: response.AuthenticationResult.IdToken,
         user: this.jwt.decode(response.AuthenticationResult.IdToken)
       }
 
     } catch (error) {
-      return new UnauthorizedException(error.message);
+      throw new UnauthorizedException(error.message);
     }
   }
 

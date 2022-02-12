@@ -1,6 +1,7 @@
-import { Controller, Post, UseGuards, Body, BadRequestException } from '@nestjs/common';
+import { Controller, Post, UseGuards, Body, BadRequestException, HttpCode, Redirect } from '@nestjs/common';
 import { AuthConfirmDto, AuthService, JwtAuthGuard } from '../services/auth/auth.service';
 import { AuthDto } from '../services/auth/auth.service';
+import { AccessTokenHeader, AuthRefreshToken, AuthUserToken } from '../services/auth/auth.validators';
 
 
 @Controller('api/auth')
@@ -43,8 +44,9 @@ export class AuthController {
   }
 
   @Post('logout')
+  @Redirect('/', 205)
   @UseGuards(JwtAuthGuard)
-  async logout(@Body() body: { access_token: string }) {
-    return this.authService.logout(body.access_token);
+  async logout(@AuthRefreshToken() token: string) {
+    return this.authService.logout(token);
   }
 }

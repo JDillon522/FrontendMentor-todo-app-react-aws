@@ -1,14 +1,17 @@
 import Nav from '../../shared/nav/Nav';
 import './App.css';
 import { Outlet } from 'react-router-dom';
+import Header from '../../shared/header/Header';
 
 function App() {
 
   return (
-    <div className='App'>
-      <Nav />
-      <Outlet />
-    </div>
+    <>
+      <Header />
+      <div className='App'>
+        <Outlet />
+      </div>
+    </>
   );
 }
 

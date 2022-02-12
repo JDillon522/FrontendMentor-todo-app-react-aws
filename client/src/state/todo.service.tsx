@@ -2,13 +2,14 @@ import axios from "axios";
 import { SetterOrUpdater } from "recoil";
 import { ItemStatus } from "../yeet/Yeet";
 import { IItem, ITodoState, updateFilteredItems } from "./atoms";
+import authHeaders from "./auth.service";
 
 /**
  * Need to find a way to logically separate executing the request and then handling the response and state update
  */
 export const todoService = {
   getTasks: async (): Promise<IItem[]> => {
-    const res = await axios.get('/api/items');
+    const res = await axios.get('/api/items', { headers: authHeaders() });
 
     if (res.status !== 200) {
       throw new Error(`ERROR: Fetch items. ${res.status}`);
@@ -20,6 +21,8 @@ export const todoService = {
   createTask: async (item: IItem): Promise<IItem[]> => {
     const res = await axios.post('/api/items', {
       item,
+    }, {
+      headers: authHeaders()
     });
 
     if (res.status !== 201) {
@@ -32,6 +35,8 @@ export const todoService = {
   updateTask: async (item: IItem): Promise<IItem[]> => {
     const res = await axios.put('/api/items', {
       item,
+    }, {
+      headers: authHeaders()
     });
 
     if (res.status !== 200) {
@@ -42,7 +47,7 @@ export const todoService = {
   },
 
   deleteTask: async (item: IItem): Promise<IItem[]> => {
-    const res = await axios.delete(`/api/items/${item.id}`);
+    const res = await axios.delete(`/api/items/${item.id}`, { headers: authHeaders() });
 
     if (res.status !== 200) {
       throw new Error(`ERROR: Delete items. ${res.status}`);
@@ -53,7 +58,8 @@ export const todoService = {
 
   deleteCompletedTasks: async (ids: number[]): Promise<IItem[]> => {
     const res = await axios.delete('/api/items', {
-      data: ids
+      data: ids,
+      headers: authHeaders()
     });
 
     if (res.status !== 200) {

@@ -23,14 +23,17 @@ export default function ThemeToggle() {
     root.setProperty('--current-disabled-text', `var(--disabled-text-${state.theme})`);
     root.setProperty('--current-box-shadow', `var(--box-shadow-${state.theme})`);
     root.setProperty('--current-primary-font-color', `var(--primary-font-color-${state.theme})`);
+    root.setProperty('--current-background-header', `var(--background-header-${state.theme})`);
+    root.setProperty('--current-warn-font-color', `var(--warn-font-color-${state.theme})`);
   }, [state.theme]);
 
   return (
     <button onClick={updateTheme}>
-      <img
-        src={state.theme === 'light' ? 'images/icon-moon.svg' : 'images/icon-sun.svg'}
-        alt="ThemeToggle"
-        title="Toggle Theme"/>
+      {
+        state.theme === 'light' ?
+        <img src="/images/icon-moon.svg" alt="ThemeToggle" title="Toggle Theme"/> :
+        <img src="/images/icon-sun.svg" alt="ThemeToggle" title="Toggle Theme"/>
+      }
     </button>
   );
 

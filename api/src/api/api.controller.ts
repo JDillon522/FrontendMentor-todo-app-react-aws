@@ -10,6 +10,7 @@ export class ApiController {
     constructor(private db: DatabaseService) {}
 
     @Get('items')
+    @UseGuards(JwtAuthGuard)
     public async getItems(): Promise<Item[]> {
         const items = await this.db.findAll();
 
@@ -17,6 +18,7 @@ export class ApiController {
     }
 
     @Put('items')
+    @UseGuards(JwtAuthGuard)
     public async updateItem(@Body() body: { item: Item }): Promise<Item[]> {
         const item = await this.db.update(body.item);
 
@@ -24,6 +26,7 @@ export class ApiController {
     }
 
     @Post('items')
+    @UseGuards(JwtAuthGuard)
     public async createNewItem(@Body() body: { item: Item}): Promise<Item[]> {
         const items = await this.db.create(body.item);
         return items;
@@ -37,6 +40,7 @@ export class ApiController {
     }
 
     @Delete('items')
+    @UseGuards(JwtAuthGuard)
     public async deleteCompletedItems(@Body() ids: number[]): Promise<Item[]> {
         const items = await this.db.deleteMany(ids);
 

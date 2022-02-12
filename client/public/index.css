@@ -7,16 +7,21 @@
     --subdued-font: #9495A5;
     --active-blue: #3A7CFD;
 
+
+    /* Layout */
+    --banner-height: 300px;
+
     /* light theme */
     --background-color-light: #FAFAFA;
     --card-background-color-light: #FFFFFF;
     --font-color-light: #494C6B;
     --subdued-gray-light: #E3E4F1;
     --disabled-text-light: #D1D2DA;
-    --background-banner-light: url(images/bg-desktop-light.jpg),
-    linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+    --background-banner-light: url(images/bg-desktop-light.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+    --background-header-light: linear-gradient(225deg, #5386d8 10%, #7b1daa 100%);
     --box-shadow-light: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
     --primary-font-color-light: #494C6B;
+    --warn-font-color-light: #B00020;
 
     /* dark theme */
     --background-color-dark: #171823;
@@ -24,20 +29,32 @@
     --font-color-dark: #C8CBE7;
     --subdued-gray-dark: #393A4B;
     --disabled-text-dark: #4D5067;
-    --background-banner-dark: url(images/bg-desktop-dark.jpg),
-    linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+    --background-banner-dark: url(images/bg-desktop-dark.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+    --background-header-dark: linear-gradient(225deg, #61287e 10%, #254e91 100%);
     --box-shadow-dark: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
     --primary-font-color-dark: #C8CBE7;
+    --warn-font-color-dark: #B00020;
 
+
+    /* Current colors */
     --current-background-color: var(--background-color-light);
     --current-card-background-color: var(--card-background-color-light);
     --current-background-banner: var(--background-banner-light);
+    --current-background-header: var(--background-banner-light);
     --current-subdued: var(--subdued-gray-light);
     --current-disabled-text: var(--disabled-text-light);
     --current-box-shadow: var(--box-shadow-light);
     --current-primary-font-color: var(--primary-font-color-light);
+    --current-warn-font-color: var(--warn-font-color-light);
 }
 
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
 
 html, body {
     width: 100%;
@@ -63,16 +80,19 @@ p {
     letter-spacing: -0.25px;
 }
 
-h1 {
+h1, h2, h3, h4 {
     color: var(--white-font);
+}
+
+h2.title {
+    margin-top: 3rem;
 }
 
 #root {
     width: 100%;
-    max-width: var(--card-max-width);
     display: flex;
     flex-direction: column;
-    margin-top: -250px;
+    margin-top: calc(var(--banner-height) * -1);
 }
 
 .row {
@@ -82,9 +102,52 @@ h1 {
 
 .banner {
     width: 100%;
-    height: 300px;
+    height: var(--banner-height);
     background: var(--current-background-banner);
     background-size: cover;
     background-position: center;
     mix-blend-mode: normal;
+}
+
+a.btn,
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: fit-content;
+    font-size: .75rem;
+    line-height: .75rem;
+    font-weight: 700;
+    letter-spacing: -0.19px;
+    padding: .25rem;
+    color: var(--subdued-font);
+    transition: color .25s;
+}
+
+a.btn {
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+a.btn.active,
+button.active {
+    color: var(--active-blue);
+}
+
+a.btn:hover:not(.active) button:hover:not(.active) {
+    color: var(--dark-font);
+}
+
+input {
+    height: 64px;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    line-height: 1rem;
+    letter-spacing: -0.25px;
+    flex-grow: 1;
+    padding-left: 3rem;
+    background-color: var(--current-card-background-color);
+    color: var(--current-primary-font-color);
 }
