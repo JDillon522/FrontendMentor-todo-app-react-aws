@@ -5,15 +5,17 @@ import { RecoilRoot } from 'recoil';
 import App from './pages/app/App';
 import Auth from './pages/auth/Auth';
 import Home from './pages/home/Home';
-import Login from './pages/login/Login';
+import Login from './pages/auth/login/Login';
 import reportWebVitals from './reportWebVitals';
 import Yeet from './yeet/Yeet';
+import Register from './pages/auth/register/Register';
+import Confirm from './pages/auth/confirm/Confirm';
 
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <Yeet />
       <BrowserRouter>
+        <Yeet />
 
         <Routes>
           <Route path="/" element={<App />}>
@@ -21,8 +23,8 @@ ReactDOM.render(
 
             <Route path="auth" element={<Auth />}>
               <Route path="login" element={<Login />} />
-
-
+              <Route path="register" element={<Register />} />
+              <Route path="confirm" element={<Confirm />} />
             </Route>
 
           </Route>

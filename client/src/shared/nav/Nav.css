@@ -4,12 +4,14 @@ nav {
   margin: .5rem;
 }
 
-
+nav button,
 nav a.btn {
   color: var(--white-font);
   margin: 0 .5rem;
+  font-size: 1rem;
 }
 
+nav button:hover,
 a.btn:hover:not(.active),
 a.btn.active {
   color: var(--black-font);

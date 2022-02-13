@@ -12,31 +12,35 @@ export class DatabaseService {
         private itemRepo: Repository<Item>
     ) {}
 
-    public findAll(): Promise<Item[]> {
-        return this.itemRepo.find();
+    public findAll(id: string): Promise<Item[]> {
+        return this.itemRepo.find({
+            where: {
+                userId: id
+            }
+        });
     }
 
-    public async update(data: Item): Promise<Item[]> {
+    public async update(data: Item, userId: string): Promise<Item[]> {
         await this.itemRepo.update({ id: data.id }, { state: data.state });
 
-        return this.findAll();
+        return this.findAll(userId);
     }
 
-    public async create(data: Item): Promise<Item[]> {
+    public async create(data: Item, userId: string): Promise<Item[]> {
         await this.itemRepo.insert(data);
 
-        return this.findAll();
+        return this.findAll(userId);
     }
 
-    public async deleteOne(id: number): Promise<Item[]> {
+    public async deleteOne(id: number, userId: string): Promise<Item[]> {
         await this.itemRepo.delete({ id: id });
 
-        return this.findAll();
+        return this.findAll(userId);
     }
 
-    public async deleteMany(ids: number[]): Promise<Item[]> {
+    public async deleteMany(ids: number[], userId: string): Promise<Item[]> {
         await this.itemRepo.delete(ids);
 
-        return this.findAll();
+        return this.findAll(userId);
     }
 }

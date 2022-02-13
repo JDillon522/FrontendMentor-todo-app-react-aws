@@ -1,42 +1,48 @@
 import { Formik } from 'formik';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import Nav from '../../shared/nav/Nav';
-import { todoState } from '../../state/atoms';
-import { appLogin, appLogout } from '../../state/auth.service';
-import { getAllAndUpdate } from '../../state/todo.service';
-import './Login.css';
+import Nav from '../../../shared/nav/Nav';
+import { authState, todoState } from '../../../state/atoms';
+import { appLogin, appLogout, appRegister } from '../../../state/auth.service';
+import { getAllAndUpdate } from '../../../state/todo.service';
+import './Register.css';
 
-export interface LoginForm {
+export interface RegisterForm {
   email: string;
   password: string;
+  confirm: string;
 }
 
-export interface LoginErrors {
+export interface RegisterErrors {
   email?: string;
   password?: string;
-  form?: string;
+  confirm?: string;
 }
 
-export default function Login() {
-  const [state, setItems] = useRecoilState(todoState);
+export default function Register() {
+  const [todo_state, todo_setItems] = useRecoilState(todoState);
+  const [auth_state, auth_setItems] = useRecoilState(authState);
+
   const navigate = useNavigate();
   let submitError: string = '';
 
-  const submitLogout = async () => {
-    await appLogout();
-    navigate('/');
-  }
+  useEffect(() => {
+    return () => {
+      todo_setItems(todo_state);
+      auth_setItems(auth_state);
+    }
+  });
 
   return (
     <>
-      <h2>LOGIN</h2>
+      <h2>REGISTER</h2>
 
-      <main className='TodoCard LoginForm'>
+      <main className='TodoCard RegisterForm'>
         <Formik
-          initialValues={{ email: '', password: '' }}
+          initialValues={{ email: '', password: '', confirm: '' }}
           validate={values => {
-            const errors: LoginErrors = {};
+            const errors: RegisterErrors = {};
             if (!values.email) {
               errors.email = 'Required';
             } else if (
@@ -48,13 +54,24 @@ export default function Login() {
             if (!values.password) {
               errors.password = 'Required';
             }
+
+            if (!values.confirm) {
+              errors.confirm = 'Please confirm your password';
+            } else if (values.confirm !== values.password) {
+              errors.confirm = 'Your passwords do not match';
+            }
+
             return errors;
           }}
           onSubmit={async (values, { setSubmitting, setErrors }) => {
             try {
-              await appLogin(values.email, values.password);
-              navigate('/');
-              await getAllAndUpdate(state, setItems);
+              await appRegister(values.email, values.password);
+
+              auth_setItems({
+                ...auth_state,
+                currentRegisterEmail: values.email
+              });
+              navigate('/auth/confirm');
 
             } catch (error: any) {
               submitError = error.message;
@@ -95,11 +112,23 @@ export default function Login() {
                 value={values.password}
               />
               <div className="errors">{errors.password && touched.password && errors.password}</div>
+
+              <input
+                placeholder='Confirm Password'
+                className={errors.confirm && touched.confirm && errors.confirm ? 'error' : ''}
+                type="password"
+                name="confirm"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.confirm}
+              />
+              <div className="errors">{errors.confirm && touched.confirm && errors.confirm}</div>
+
               <div className="errors">{submitError}</div>
 
               <div className='footer'>
                 <button className='btn' type="submit" disabled={!isValid || isSubmitting}>
-                  Submit
+                  Register
                 </button>
 
               </div>
@@ -108,7 +137,6 @@ export default function Login() {
 
         </Formik>
       </main>
-      <button onClick={submitLogout}>Logout</button>
     </>
   );
 }

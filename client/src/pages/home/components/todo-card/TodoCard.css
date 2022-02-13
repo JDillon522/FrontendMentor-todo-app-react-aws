@@ -22,6 +22,48 @@ main.TodoCard {
   box-sizing: border-box;
 }
 
+.subfooter.mobile {
+  padding: 1rem;
+  justify-content: space-between;
+  font-size: 1rem;
+  display: none;
+  color: var(--subdued-font);
+}
+
+.subfooter button {
+  font-family: var(--font-family);
+}
+
+@media screen and (max-width: 450px) {
+  .TodoCard .footer {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+  .TodoCard .footer label {
+    width: 50%;
+    font-size: 1.15rem;
+  }
+
+  .subfooter.mobile {
+    display: flex;
+  }
+
+  .TodoCard .desktop {
+    display: none;
+  }
+
+  .TodoCard .footer .status {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .TodoCard .footer .status button {
+    font-size: 1rem;
+  }
+}
+
 .TodoCard label {
   color: var(--subdued-font);
 }

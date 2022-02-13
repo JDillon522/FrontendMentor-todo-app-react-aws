@@ -1,16 +1,18 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { todoState } from '../../state/atoms';
+import { authState, todoState } from '../../state/atoms';
 import './ThemeToggle.css';
 
 
 export default function ThemeToggle() {
-  const [state, setItems] = useRecoilState(todoState);
+  const [state, setItems] = useRecoilState(authState);
 
   const updateTheme = () => {
+    const newTheme = state.theme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
     setItems({
       ...state,
-      theme: state.theme === 'light' ? 'dark' : 'light'
+      theme: newTheme
     });
   }
 
@@ -18,6 +20,7 @@ export default function ThemeToggle() {
     const root = document.documentElement.style;
     root.setProperty('--current-background-color', `var(--background-color-${state.theme})`);
     root.setProperty('--current-background-banner', `var(--background-banner-${state.theme})`);
+    root.setProperty('--current-background-mobile-banner', `var(--background-banner-mobile-${state.theme})`);
     root.setProperty('--current-card-background-color', `var(--card-background-color-${state.theme})`);
     root.setProperty('--current-subdued', `var(--subdued-gray-${state.theme})`);
     root.setProperty('--current-disabled-text', `var(--disabled-text-${state.theme})`);

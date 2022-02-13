@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Body, BadRequestException, HttpCode, Redirect } from '@nestjs/common';
+import { Controller, Post, UseGuards, Body, BadRequestException, HttpCode, Redirect, Get, HttpException, HttpStatus } from '@nestjs/common';
 import { AuthConfirmDto, AuthService, JwtAuthGuard } from '../services/auth/auth.service';
 import { AuthDto } from '../services/auth/auth.service';
 import { AccessTokenHeader, AuthRefreshToken, AuthUserToken } from '../services/auth/auth.validators';
@@ -37,7 +37,6 @@ export class AuthController {
     }
   }
 
-  // @UseGuards(CognitoAuthGuard)
   @Post('login')
   async login(@Body() req: AuthDto) {
     return this.authService.login(req);
@@ -48,5 +47,14 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   async logout(@AuthRefreshToken() token: string) {
     return this.authService.logout(token);
+  }
+
+  @Get('check')
+  @UseGuards(JwtAuthGuard)
+  async checkIfTokenValid(@AuthRefreshToken() refresh: string, @AccessTokenHeader() access: string) {
+    if (refresh && access) {
+      return;
+    }
+    throw new HttpException('State is no longer valid', HttpStatus.UNAUTHORIZED);;
   }
 }

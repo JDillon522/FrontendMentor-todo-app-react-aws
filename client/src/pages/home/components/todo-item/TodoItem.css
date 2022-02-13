@@ -8,6 +8,11 @@
   align-items: center;
   background-color: var(--current-card-background-color);
 }
+
+.TodoItem input {
+  display: none;
+}
+
 /* Hide the native checkbox */
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {

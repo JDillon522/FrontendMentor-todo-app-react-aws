@@ -14,31 +14,42 @@ export default function TodoCard() {
   }
 
   return (
-    <main className='TodoCard'>
-      {
-        state.filteredItems.map((item: IItem) => (
-          <TodoItem key={item.id} item={item} />
-        ))
-      }
-      <div className='footer'>
+    <>
+      <main className='TodoCard'>
+        {
+          state.filteredItems.map((item: IItem) => (
+            <TodoItem key={item.id} item={item} />
+          ))
+        }
+        <div className='footer'>
+          <label className='desktop'>
+            {state.filteredItems.length} items left
+          </label>
+
+          <div className="status">
+            <FilterButton buttonStatus={ItemStatus.all}>All</FilterButton>
+            <FilterButton buttonStatus={ItemStatus.pending}>Active</FilterButton>
+            <FilterButton buttonStatus={ItemStatus.complete}>Completed</FilterButton>
+          </div>
+
+          <button className="desktop" onClick={clearCompleted}>Clear Completed</button>
+        </div>
+
+
+      </main>
+
+      <div className="subfooter mobile">
         <label>
           {state.filteredItems.length} items left
         </label>
-
-        <div className="status">
-          <FilterButton buttonStatus={ItemStatus.all}>All</FilterButton>
-          <FilterButton buttonStatus={ItemStatus.pending}>Active</FilterButton>
-          <FilterButton buttonStatus={ItemStatus.complete}>Completed</FilterButton>
-        </div>
-
         <button onClick={clearCompleted}>Clear Completed</button>
       </div>
-    </main>
+    </>
   )
 }
 
 
-function FilterButton(props: PropsWithChildren<{children: string, buttonStatus: ItemStatus}>) {
+function FilterButton(props: PropsWithChildren<{ children: string, buttonStatus: ItemStatus }>) {
 
   const [state, setItems] = useRecoilState(todoState);
 

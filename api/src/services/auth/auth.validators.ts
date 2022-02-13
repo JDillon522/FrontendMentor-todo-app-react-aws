@@ -1,4 +1,6 @@
 import { createParamDecorator, ExecutionContext, HttpException, HttpStatus } from "@nestjs/common";
+import { plainToClass, plainToInstance } from "class-transformer";
+import { JwtUserDto } from "../../database/models/user";
 
 export const AccessTokenHeader = createParamDecorator(
   async (property: string | number | symbol, ctx: ExecutionContext) => {
@@ -32,6 +34,19 @@ export const AuthRefreshToken = createParamDecorator(
       return headers['refresh-token'];
     }
 
-    throw new HttpException('Refresh-Token is required in the header', HttpStatus.BAD_REQUEST);;
+    throw new HttpException('Refresh-Token is required in the header', HttpStatus.BAD_REQUEST);
   }
 );
+
+export const JwtUser = createParamDecorator(
+  async (property: string, ctx: ExecutionContext) => {
+    const user: JwtUserDto = ctx.switchToHttp().getRequest().user;
+    const userDto = plainToInstance(JwtUserDto, user);
+
+    if (!user) {
+      throw new HttpException('Missing user JWT data', HttpStatus.BAD_REQUEST);
+    }
+
+    return userDto;
+  }
+)

@@ -14,7 +14,6 @@ export interface ITodoState {
   items: IItem[];
   filteredItems: IItem[];
   activeFilter: ItemStatus;
-  theme: 'light'|'dark'
 }
 
 export const todoState = atom({
@@ -22,8 +21,7 @@ export const todoState = atom({
   default: {
     items: [],
     filteredItems: [],
-    activeFilter: 0,
-    theme: 'light'
+    activeFilter: 0
   } as ITodoState
 });
 
@@ -38,3 +36,18 @@ export const todoItemsSelector = selector({
 export const updateFilteredItems = (items: IItem[], status: ItemStatus): IItem[] => {
   return orderBy(items.filter(i => i.state === status || status === ItemStatus.all), 'id');
 }
+
+export interface AuthState {
+  isLoggedIn: boolean;
+  theme: 'light'|'dark';
+  currentRegisterEmail: string | null;
+}
+
+export const authState = atom({
+  key: 'authState',
+  default: {
+    isLoggedIn: false,
+    // user
+    theme: localStorage.getItem('theme') || 'light'
+  } as AuthState
+});

@@ -18,5 +18,5 @@ export class Item {
     @Column({
         nullable: true
     })
-    positionIndex: number;
+    userId: string;
 }

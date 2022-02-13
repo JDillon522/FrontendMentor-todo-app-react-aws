@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { todoState } from "../state/atoms";
+import { authState, todoState } from "../state/atoms";
+import { checkAuthState } from "../state/auth.service";
 import { getAllAndUpdate } from "../state/todo.service";
 
 export enum ItemStatus {
@@ -21,10 +23,28 @@ export enum ItemStatus {
  * api requests to get and set state.
  */
 export default function Yeet() {
-    const [state, setItems] = useRecoilState(todoState);
+    const [todo_state, todo_setItems] = useRecoilState(todoState);
+    const [auth_state, auth_setItems] = useRecoilState(authState);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        getAllAndUpdate(state, setItems);
+        (async () => {
+            // check if logged in
+            const isLoggedIn = await checkAuthState();
+
+            if (isLoggedIn) {
+                auth_setItems({
+                    ...auth_state,
+                    isLoggedIn: isLoggedIn
+                });
+
+                // Load todos from api
+                getAllAndUpdate(todo_state, todo_setItems);
+            } else if (!/confirm/.test(window.location.pathname)) {
+                navigate('/auth/login');
+            }
+
+        })();
     }, []);
 
     return (<></>);

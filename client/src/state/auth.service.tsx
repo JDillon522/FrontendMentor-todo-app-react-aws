@@ -1,5 +1,15 @@
 import axios, { AxiosRequestHeaders } from "axios";
 
+axios.interceptors.request.use(
+  (config) => {
+    config.headers = authHeaders();
+    return config;
+  },
+  (error) => {
+
+    return Promise.reject(error);
+  }
+)
 
 export async function appLogin(email: string, password: string): Promise<void> {
   try {
@@ -19,7 +29,35 @@ export async function appLogin(email: string, password: string): Promise<void> {
       }
     }
 
-    return;
+    return Promise.resolve();
+
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+
+export async function appRegister(email: string, password: string): Promise<void> {
+  try {
+    await axios.post('/api/auth/register', {
+      email,
+      password
+    });
+
+    return Promise.resolve();
+
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+
+export async function appConfirmRegister(email: string, code: string): Promise<void> {
+  try {
+    await axios.post('/api/auth/confirm', {
+      code,
+      email
+    });
+
+    return Promise.resolve();
 
   } catch (error: any) {
     throw new Error(error.response.data.message);
@@ -28,18 +66,39 @@ export async function appLogin(email: string, password: string): Promise<void> {
 
 export async function appLogout(): Promise<void> {
   try {
-    const res = await axios.post('/api/auth/logout', {}, { headers: authHeaders() });
+    const res = await axios.post('/api/auth/logout', {});
 
     if (res.status !== 205 && res.status !== 401) {
       throw new Error('Error logging out');
     }
   }
   catch (error) {
-    console.log(error)
+    // console.log(error)
   }
   localStorage.clear();
 
-  return;
+  return Promise.resolve();
+}
+
+export async function checkAuthState(): Promise<boolean> {
+  try {
+    const res = await axios.get('/api/auth/check');
+
+    if (res.status !== 200) {
+      throw new Error('User state invalid');
+    }
+
+    return true;
+  }
+  catch (error) {
+    // console.log(error)
+  }
+  localStorage.removeItem('access_token');
+  localStorage.removeItem('id_token');
+  localStorage.removeItem('refresh_token');
+  localStorage.removeItem('user');
+
+  return false;
 }
 
 export default function authHeaders(): AxiosRequestHeaders {
