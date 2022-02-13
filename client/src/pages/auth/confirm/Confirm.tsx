@@ -1,10 +1,8 @@
 import { Formik } from 'formik';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import Nav from '../../../shared/nav/Nav';
 import { authState, todoState } from '../../../state/atoms';
-import { appConfirmRegister, appLogin, appLogout } from '../../../state/auth.service';
+import { appConfirmRegister } from '../../../state/auth.service';
 import { getAllAndUpdate } from '../../../state/todo.service';
 import './Confirm.css';
 
@@ -20,17 +18,10 @@ export interface ConfirmErrors {
 
 export default function Confirm() {
   const [todo_state, todo_setItems] = useRecoilState(todoState);
-  const [auth_state, auth_setItems] = useRecoilState(authState);
+  const [auth_state] = useRecoilState(authState);
 
   const navigate = useNavigate();
   let submitError: string = '';
-
-  useEffect(() => {
-    return () => {
-      todo_setItems(todo_state);
-      auth_setItems(auth_state);
-    }
-  });
 
   return (
     <>
@@ -60,7 +51,6 @@ export default function Confirm() {
               await appConfirmRegister(values.email || auth_state.currentRegisterEmail as string, values.code);
 
               navigate('/auth/login');
-              await getAllAndUpdate(todo_state, todo_setItems);
 
             } catch (error: any) {
               submitError = error.message;

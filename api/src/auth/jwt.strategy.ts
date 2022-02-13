@@ -1,29 +1,27 @@
-import { Injectable } from "@nestjs/common";
-import { PassportStrategy } from "@nestjs/passport";
-import { ExtractJwt, Strategy } from "passport-jwt";
+import { Injectable } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
 import * as jwkToPem from 'jwk-to-pem';
 import { RSA } from 'jwk-to-pem';
 
 
 export const cognitoJwk = {
   keys: [
-    // works for id_token
-    {
-      alg: "RS256",
-      e: "AQAB",
-      kid: "/fOLUr4TDWX5MwIkAlHHmsaukiLKFh/5hqiKMMXobKk=",
-      kty: "RSA",
-      n: "yCzErkNrWuhkyWCyxcwslRg_4hNv8xixegJOL9-uaoWYvbJ-Gald2C-kf46wmH5MwPRuo9iRIsb3JJL6WIoziVBqxyYM1zObcbHMz7WNVTYJej0lExOuG7FdOr0cT-x_-OVhi1AJ-Otf5d86gCiOlhaRI-BJee-z-8jMhHKTcEq01DEPzTN8J4NzllCL3WwewESVNhX4gpOGBiWYXuLjDURoeWt_Alcxcci6HdruaRMf3SzPNlfXr-mN7k3nY6lyrCsmFuWRdJtmusqiv0AOL2Yel4ZwuhQ-tLFmYw3hNM7NwfwnVMCekqdZBVR8yXv0HjQcdzjTghdjxI0XnF7Oxw",
-      use: "sig"
+    { // Works for ID Token
+      alg: 'RS256',
+      e: 'AQAB',
+      kid: 'lwRfsyMwQA0tYJALqqnRrLdmwSZwtlCqr0dLsjRuKG8=',
+      kty: 'RSA',
+      n: 't_PuZ-CWmbCQaHXaSJosSzmMavl21op0P3WHZGNgJtMq-MuB49xyLRan_1MzMVZzXHGSbrjDX_48jU64AqxCrEMXPzcjROuO-Tnxgi41hY-AnvbCNwcaXIxGPRs1w0CBbXerp0yA8zmCWYSOuvtwZFp9VRtUeamCo7IB7uJ2ag4q9otCgFBOZaBIN9gXe1y4Vi2urACxoRJDx72_gpezS5PinWWY1CsL2yY7p4giZnlS8EUpiObDcoReBeouyf8IY2b0KnwD7kiQguS9fUh44qEBC8uuWIb2LQlozGvlAVXpl3sXLHELxkT6pfMUzzC7SMTytiZhMKGYi47PindHGw',
+      use: 'sig'
     },
-    {
-      // works for access key
-      alg: "RS256",
-      e: "AQAB",
-      kid: "d9hcS9mnboGVeGvxynPE+GmrqXQaIinmuFSaQewnckk=",
-      kty: "RSA",
-      n: "oXVBREZXCMk7-dk1ggtKFaukniw63O0u_jAsndl_hqJ1Ud8rqDloZ9SDNzBQ83RgmXqXws1EpUOOdBPs4pZYTypxnZwgoEc5K0ycuOn4YC6EjA88ezpSjtZsQg6nwX8VtMNorwe9LsUgSBqCZt0eQQEhzjK0jV_NQFETGg30arK_f5h58s1qH1atQcbk_cZTgOwIuzfsAZrWpmZ5CWC4FkOP1DDp9bJPoMeqgidQbOejytYCYv8V9I05zJACncmia33P63db6MX4hF8xVD2mo4TkQ0twC3P38F5VdyOQwaJrVE9A69KcOGnzqrPoRIqJmrlhhpjQ0aVoSrduAb2HFw",
-      use: "sig"
+    { // Works for access token
+      alg: 'RS256',
+      e: 'AQAB',
+      kid: '5SSIWzNq8UxNWANGPIj14R/dm3VH0qcCzhd8uyhpldc=',
+      kty: 'RSA',
+      n: '2E23mv9zc4tz91sDhnC9Bct7MwVTTW-lVUl0N8l10zyN9PT2EkUYwaffXYXU2jgS-WxiWUR0D0yBshvo7xyT09zRfgtPiyyH9pXFiKmgWKdbOkhbkGQJGTQ8DFvyIfaGfo1HRag8JTUafk1op1oXW1SXEURQHMOupL165d0AFibMpI0foLVcsAkY5mkDeCERcLXnULb3sa_ep3yFb4W91gCEy-EZM6aXDzWtJ_mYZJ4yPlc6N_DMhrsChcaXv-Z0sCjsFVWVfln_OInxg79JRurIW8fb4rDLvCvHgi-BSFE0vRgK_pWH9UORqqdcR5SlNx1n6s6twxsvbGdEUsZ-Aw',
+      use: 'sig'
     }
   ]
 }

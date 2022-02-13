@@ -1,11 +1,8 @@
 import { Formik } from 'formik';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import Nav from '../../../shared/nav/Nav';
-import { authState, todoState } from '../../../state/atoms';
-import { appLogin, appLogout, appRegister } from '../../../state/auth.service';
-import { getAllAndUpdate } from '../../../state/todo.service';
+import { authState } from '../../../state/atoms';
+import { appRegister } from '../../../state/auth.service';
 import './Register.css';
 
 export interface RegisterForm {
@@ -21,18 +18,10 @@ export interface RegisterErrors {
 }
 
 export default function Register() {
-  const [todo_state, todo_setItems] = useRecoilState(todoState);
   const [auth_state, auth_setItems] = useRecoilState(authState);
 
   const navigate = useNavigate();
   let submitError: string = '';
-
-  useEffect(() => {
-    return () => {
-      todo_setItems(todo_state);
-      auth_setItems(auth_state);
-    }
-  });
 
   return (
     <>
