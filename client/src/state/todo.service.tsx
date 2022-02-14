@@ -2,7 +2,6 @@ import axios from "axios";
 import { SetterOrUpdater } from "recoil";
 import { ItemStatus } from "../yeet/Yeet";
 import { IItem, ITodoState, updateFilteredItems } from "./atoms";
-import authHeaders from "./auth.service";
 
 /**
  * Need to find a way to logically separate executing the request and then handling the response and state update
@@ -74,6 +73,8 @@ export async function getAllAndUpdate(state: ITodoState, setItems: SetterOrUpdat
     items: items,
     filteredItems: filtered
   });
+
+  return Promise.resolve();
 }
 
 export async function updateAndGetAll(item: IItem, state: ITodoState, setItems: SetterOrUpdater<ITodoState>): Promise<void> {
@@ -85,6 +86,8 @@ export async function updateAndGetAll(item: IItem, state: ITodoState, setItems: 
     items: items,
     filteredItems: filtered
   });
+
+  return Promise.resolve();
 }
 
 export async function createAndGetAll(item: IItem, state: ITodoState, setItems: SetterOrUpdater<ITodoState>): Promise<void> {
@@ -96,6 +99,7 @@ export async function createAndGetAll(item: IItem, state: ITodoState, setItems: 
     items: items,
     filteredItems: filtered
   });
+  return Promise.resolve();
 }
 
 export async function deleteAndGetAll(item: IItem, state: ITodoState, setItems: SetterOrUpdater<ITodoState>): Promise<void> {
@@ -107,6 +111,7 @@ export async function deleteAndGetAll(item: IItem, state: ITodoState, setItems: 
     items: items,
     filteredItems: filtered
   });
+  return Promise.resolve();
 }
 
 export async function deleteAllCompleted(state: ITodoState, setItems: SetterOrUpdater<ITodoState>): Promise<void> {
@@ -119,4 +124,5 @@ export async function deleteAllCompleted(state: ITodoState, setItems: SetterOrUp
     items: items,
     filteredItems: filtered
   });
+  return Promise.resolve();
 }

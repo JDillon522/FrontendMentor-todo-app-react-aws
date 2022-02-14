@@ -3,4 +3,11 @@
   max-width: var(--card-max-width);
   margin: 0 auto;
   padding: 1rem;
+  margin-top: calc(var(--banner-height) * -1);
+}
+
+@media screen and (max-width: 860px) {
+  .App {
+    margin-top: calc(var(--banner-height-mobile) * -1);
+  }
 }

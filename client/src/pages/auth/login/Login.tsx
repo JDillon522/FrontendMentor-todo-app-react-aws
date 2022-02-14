@@ -1,8 +1,9 @@
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { authState } from '../../../state/atoms';
+import { authState, todoState } from '../../../state/atoms';
 import { appLogin } from '../../../state/auth.service';
+import { getAllAndUpdate } from '../../../state/todo.service';
 import './Login.css';
 
 export interface LoginForm {
@@ -16,6 +17,7 @@ export interface LoginErrors {
 }
 
 export default function Login() {
+  const [todo_state, todo_setItems] = useRecoilState(todoState);
   const [auth_state, auth_setItems] = useRecoilState(authState);
 
   const navigate = useNavigate();
@@ -50,6 +52,8 @@ export default function Login() {
                 ...auth_state,
                 isLoggedIn: true
               });
+
+              await getAllAndUpdate(todo_state, todo_setItems);
 
               navigate('/');
 

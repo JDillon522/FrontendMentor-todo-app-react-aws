@@ -18,8 +18,8 @@
     --font-color-light: #494C6B;
     --subdued-gray-light: #E3E4F1;
     --disabled-text-light: #D1D2DA;
-    --background-banner-light: url(images/bg-desktop-light.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
-    --background-banner-mobile-light: url(images/bg-mobile-light.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+    --background-banner-light: url(/images/bg-desktop-light.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+    --background-banner-mobile-light: url(/images/bg-mobile-light.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
     --background-header-light: linear-gradient(225deg, #5386d8 10%, #7b1daa 100%);
     --box-shadow-light: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
     --primary-font-color-light: #494C6B;
@@ -31,8 +31,8 @@
     --font-color-dark: #C8CBE7;
     --subdued-gray-dark: #393A4B;
     --disabled-text-dark: #4D5067;
-    --background-banner-dark: url(images/bg-desktop-dark.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
-    --background-banner-mobile-dark: url(images/bg-mobile-dark.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+    --background-banner-dark: url(/images/bg-desktop-dark.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+    --background-banner-mobile-dark: url(/images/bg-mobile-dark.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
     --background-header-dark: linear-gradient(225deg, #61287e 10%, #254e91 100%);
     --box-shadow-dark: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
     --primary-font-color-dark: #C8CBE7;
@@ -104,39 +104,18 @@ h2.title {
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: calc((var(--banner-height) + 50px )* -1);
+    /* margin-top: calc((var(--banner-height) + 50px )* -1); */
 }
 
-@media screen and (max-width: 860px) {
+/* @media screen and (max-width: 860px) {
     #root {
         margin-top: calc((var(--banner-height-mobile) + 50px )* -1);
     }
-}
+} */
 
 .row {
     display: flex;
     flex-direction: row;
-}
-
-.banner {
-    width: 100%;
-    height: var(--banner-height);
-    background: var(--current-background-banner);
-    background-size: cover;
-    background-position: top;
-    mix-blend-mode: normal;
-    margin-top: 50px;
-}
-
-@media screen and (max-width: 860px) {
-    .banner {
-        background: var(--current-background-mobile-banner);
-        background-size: cover;
-        background-position: top;
-        mix-blend-mode: normal;
-        margin-top: 50px;
-        height: var(--banner-height-mobile);
-    }
 }
 
 a.btn,

@@ -10,10 +10,10 @@ header {
 header.row {
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
 }
 
-@media screen and (max-width: 860px) {
+/* @media screen and (max-width: 860px) {
     header.row {
         margin-bottom: -70px;
     }
@@ -23,10 +23,30 @@ header.row {
     header.row {
         margin-bottom: 1.5rem;
     }
-}
+} */
 
 header h1 {
     margin: 0.5rem 0.5rem 0;
     line-height: 2.5rem;
 }
 
+.banner {
+    width: 100%;
+    height: var(--banner-height);
+    background: var(--current-background-banner);
+    background-size: cover;
+    background-position: top;
+    mix-blend-mode: normal;
+    /* margin-top: 50px; */
+}
+
+@media screen and (max-width: 860px) {
+    .banner {
+        background: var(--current-background-mobile-banner);
+        background-size: cover;
+        background-position: top;
+        mix-blend-mode: normal;
+        /* margin-top: 50px; */
+        height: var(--banner-height-mobile);
+    }
+}

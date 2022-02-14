@@ -40,7 +40,7 @@ export default function Yeet() {
 
                 // Load todos from api
                 getAllAndUpdate(todo_state, todo_setItems);
-            } else if (!/confirm/.test(window.location.pathname)) {
+            } else if (!/confirm|register/.test(window.location.pathname)) {
                 navigate('/auth/login');
             }
 
