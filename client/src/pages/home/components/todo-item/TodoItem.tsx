@@ -39,7 +39,7 @@ export default function TodoItem(props: { item: IItem }) {
         </input>
         <label htmlFor={props.item.id + '-item'}>{props.item.title}</label>
         <button title="Delete item" onClick={deleteItem}>
-          <img src="images/icon-cross.svg" alt="Delete" />
+          <img src="/images/icon-cross.svg" alt="Delete" />
         </button>
       </p>
     </div>

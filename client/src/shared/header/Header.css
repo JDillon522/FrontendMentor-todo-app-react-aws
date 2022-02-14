@@ -37,7 +37,6 @@ header h1 {
     background-size: cover;
     background-position: top;
     mix-blend-mode: normal;
-    /* margin-top: 50px; */
 }
 
 @media screen and (max-width: 860px) {
@@ -46,7 +45,6 @@ header h1 {
         background-size: cover;
         background-position: top;
         mix-blend-mode: normal;
-        /* margin-top: 50px; */
         height: var(--banner-height-mobile);
     }
 }
