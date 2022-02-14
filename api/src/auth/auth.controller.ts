@@ -24,6 +24,7 @@ export class AuthController {
     try {
       return await this.authService.register(AuthRegisterDto);
     } catch (e) {
+      console.error(e);
       throw new BadRequestException(e.message);
     }
   }
@@ -33,6 +34,7 @@ export class AuthController {
     try {
       return await this.authService.confirmAccount(confirmDto);
     } catch (e) {
+      console.error(e);
       throw new BadRequestException(e.message);
     }
   }

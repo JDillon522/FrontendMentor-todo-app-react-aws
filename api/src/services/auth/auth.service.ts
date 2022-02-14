@@ -104,6 +104,7 @@ export class AuthService {
       }
 
     } catch (error) {
+      console.error(error);
       throw new UnauthorizedException(error.message);
     }
   }
