@@ -10,7 +10,7 @@ import {
 
 @Injectable()
 export class UserService {
-  private client = new CognitoIdentityProviderClient({});
+  private client = new CognitoIdentityProviderClient({ region: 'us-east-2' });
 
   public async getUser(token: string) {
     const params: GetUserCommandInput = {

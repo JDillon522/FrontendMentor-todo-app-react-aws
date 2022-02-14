@@ -37,7 +37,7 @@ export interface AuthConfirmDto {
 
 @Injectable()
 export class AuthService {
-  private client = new CognitoIdentityProviderClient({});
+  private client = new CognitoIdentityProviderClient({ region: 'us-east-2' });
 
   constructor(
     private jwt: JwtService
@@ -88,7 +88,6 @@ export class AuthService {
           USERNAME: user.email,
           PASSWORD: user.password,
           SECRET_HASH: this.hashSecret(user.email),
-
         }
       }
 
