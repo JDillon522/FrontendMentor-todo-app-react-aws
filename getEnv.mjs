@@ -6,7 +6,7 @@ const getParameters = async () => {
     const client = new SSMClient({ region: 'us-east-2' });
 
     const params = {
-        Names: ['DB_PASSWORD', 'DB_HOST', 'DB_NAME', 'DB_USERNAME'],
+        Names: ['DB_PASSWORD', 'DB_HOST', 'DB_NAME', 'DB_USERNAME', 'COGNITO_CLIENT_ID', 'COGNITO_CLIENT_SECRET'],
         WithDecryption: true
     }
     const command = new GetParametersCommand(params);
