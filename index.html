@@ -1,0 +1,253 @@
+<html lang="en"
+  style="--current-background-color:var(--background-color-dark); --current-background-banner:var(--background-banner-dark); --current-background-mobile-banner:var(--background-banner-mobile-dark); --current-card-background-color:var(--card-background-color-dark); --current-subdued:var(--subdued-gray-dark); --current-disabled-text:var(--disabled-text-dark); --current-box-shadow:var(--box-shadow-dark); --current-primary-font-color:var(--primary-font-color-dark); --current-background-header:var(--background-header-dark); --current-warn-font-color:var(--warn-font-color-dark);">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/favicon-32x32.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Web site created using create-react-app">
+  <link rel="apple-touch-icon" href="/favicon-32x32.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style rel="stylesheet">
+    :root {
+      --font-family: 'Josefin Sans', sans-serif;
+      --base-font-size: 18px;
+      --card-max-width: 540px;
+      --white-font: #FFFFFF;
+      --dark-font: #494C6B;
+      --subdued-font: #9495A5;
+      --active-blue: #3A7CFD;
+
+
+      /* Layout */
+      --banner-height: 300px;
+      --banner-height-mobile: 200px;
+
+      /* light theme */
+      --background-color-light: #FAFAFA;
+      --card-background-color-light: #FFFFFF;
+      --font-color-light: #494C6B;
+      --subdued-gray-light: #E3E4F1;
+      --disabled-text-light: #D1D2DA;
+      --background-banner-light: url(api/dist/client/images/bg-desktop-light.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+      --background-banner-mobile-light: url(api/dist/client/images/bg-mobile-light.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+      --background-header-light: linear-gradient(225deg, #5386d8 10%, #7b1daa 100%);
+      --box-shadow-light: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+      --primary-font-color-light: #494C6B;
+      --warn-font-color-light: #B00020;
+
+      /* dark theme */
+      --background-color-dark: #171823;
+      --card-background-color-dark: #25273D;
+      --font-color-dark: #C8CBE7;
+      --subdued-gray-dark: #393A4B;
+      --disabled-text-dark: #4D5067;
+      --background-banner-dark: url(api/dist/client/images/bg-desktop-dark.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+      --background-banner-mobile-dark: url(api/dist/client/images/bg-mobile-dark.jpg), linear-gradient(225deg, #5596FF 0%, #AC2DEB 100%);
+      --background-header-dark: linear-gradient(225deg, #61287e 10%, #254e91 100%);
+      --box-shadow-dark: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+      --primary-font-color-dark: #C8CBE7;
+      --warn-font-color-dark: #B00020;
+
+
+      /* Current colors */
+      --current-background-color: var(--background-color-light);
+      --current-card-background-color: var(--card-background-color-light);
+      --current-background-banner: var(--background-banner-light);
+      --current-background-mobile-banner: var(--background-banner-mobile-light);
+      --current-background-header: var(--background-banner-light);
+      --current-subdued: var(--subdued-gray-light);
+      --current-disabled-text: var(--disabled-text-light);
+      --current-box-shadow: var(--box-shadow-light);
+      --current-primary-font-color: var(--primary-font-color-light);
+      --current-warn-font-color: var(--warn-font-color-light);
+    }
+
+    html {
+      box-sizing: border-box;
+      /* NO IDEA WHY I NEED THIS */
+      overflow-x: hidden;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      font-family: var(--font-family);
+      color: var(--current-primary-font-color);
+      background-color: var(--current-background-color);
+      font-size: var(--base-font-size);
+      transition: all .25s;
+    }
+
+    p {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1rem;
+      line-height: 1.25rem;
+      letter-spacing: -0.25px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: var(--white-font);
+    }
+
+    h2.title {
+      margin-top: 4.5rem;
+    }
+
+    @media screen and (max-width: 450px) {
+      h2.title {
+        margin-top: -1rem;
+      }
+    }
+
+    #root {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-top: 0;
+    }
+
+    @media screen and (max-width: 860px) {
+      #root {
+        margin-top: 0;
+      }
+    }
+
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .banner {
+      width: 100%;
+      height: var(--banner-height);
+      background: var(--current-background-banner);
+      background-size: cover;
+      background-position: top;
+      mix-blend-mode: normal;
+      /* margin-top: 50px; */
+    }
+
+    @media screen and (max-width: 860px) {
+      .banner {
+        background: var(--current-background-mobile-banner);
+        background-size: cover;
+        background-position: top;
+        mix-blend-mode: normal;
+        height: var(--banner-height-mobile);
+      }
+    }
+
+    .App {
+      margin: -15rem auto 0;
+      max-width: var(--card-max-width);
+      padding: 1rem;
+      width: 100%
+    }
+
+    @media screen and (max-width: 860px) {
+      .App {
+        margin-top: -9rem;
+      }
+    }
+
+    nav {
+      align-items: center;
+      display: flex;
+      margin: .5rem
+    }
+
+    header {
+      background: var(--current-background-header);
+      box-shadow: var(--current-box-shadow);
+      display: flex;
+      flex-direction: column;
+      height: 50px;
+      width: 100%
+    }
+
+    header.row {
+      align-items: center;
+      justify-content: space-between;
+      /* margin-bottom: 1.5rem */
+    }
+
+    /* @media screen and (max-width:860px) {
+      header.row {
+        margin-bottom: -50px
+      }
+    } */
+
+    @media screen and (max-width:450px) {
+      header.row {
+        margin-bottom: 0;
+      }
+    }
+
+    header h1 {
+      line-height: 2.5rem;
+      margin: .5rem .5rem 0
+    }
+
+
+
+    main.TodoCard {
+      background-color: var(--current-card-background-color);
+      border-radius: 5px;
+      box-shadow: var(--current-box-shadow);
+      box-sizing: border-box;
+      max-width: var(--card-max-width);
+      width: 100%
+    }
+
+    .LoginForm {
+      padding: 2rem 2rem .5rem
+    }
+
+
+  </style>
+  <title>Todo App</title>
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1049.0" data-gr-ext-installed=""><noscript>You need to enable JavaScript to run
+    this app.</noscript>
+  <div id="root">
+    <header class="row">
+      <h1>TODO</h1>
+      <nav></nav>
+    </header>
+    <div class="banner"></div>
+    <div class="App">
+      <!-- <h2>LOGIN</h2> -->
+      <main class="TodoCard LoginForm">
+        <h2>Im Hosted on AWS</h2>
+        <p>Frontend Mentor has made the smi-sensible choice to only allow certain trusted hosting domains. I spent a hell of a lot of time getting this deployed on AWS and hosted on my own domain only to just now learn this.</p>
+        <p>If you'd like to view the actual app please go to <a href="https://todo.steellionllc.com">todo.steellionllc.com</a> </p>
+      </main>
+    </div>
+  </div>
+</body>
+
+</html>
